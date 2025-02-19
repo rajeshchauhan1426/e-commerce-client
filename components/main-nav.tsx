@@ -1,12 +1,13 @@
 "use client"
 import { cn } from '@/libs/libs'
+import { Category } from '@/types'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import React from 'react'
 
 interface MainNavProps{
-  data: any
+  data: Category[]
 };
 
 const MAinNav: React.FC<MainNavProps>= ({
