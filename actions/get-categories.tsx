@@ -1,6 +1,5 @@
 import { Category } from "@/types";
-import { promises } from "dns";
-import { url } from "inspector";
+
 
 
 const URL = `${process.env.NEXT_PUBLIC_API_URL}/categories`;
