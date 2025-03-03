@@ -1,3 +1,4 @@
+import { cn } from "@/libs/libs";
 import React, { forwardRef } from "react";
 
 
@@ -12,7 +13,22 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     ...props
 },ref) => {
     return(
-        <button ref={ref}> {children}</button>
+        <button  className= {cn(
+         `w-auto 
+         rounded-full
+         bg-black
+         border-transparent
+         px-5
+         py-3
+         disabled:cursor-not-allowed
+         disabled: opacity-50
+         text-white
+         font-semibold
+         hover:opacity-75
+         transition`,
+         className
+
+        )}ref={ref}> {children}</button>
     )
 })
 
