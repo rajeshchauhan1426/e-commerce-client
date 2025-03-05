@@ -1,8 +1,14 @@
+import Container from '@/components/ui/container'
 import React from 'react'
 
 function HomePage() {
   return (
-    <div>Hello from home page</div>
+   <Container>
+     <div className='space-y-10 pb-10'>
+      <Billboard/>
+     </div>
+
+   </Container>
   )
 }
 
