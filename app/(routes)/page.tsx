@@ -1,4 +1,5 @@
-import getBillboard from '@/actions/get-billboard'
+
+import getBillboard from '@/actions/get-billboard';
 import Billboard from '@/components/billboard'
 import Container from '@/components/ui/container'
 import React from 'react'
