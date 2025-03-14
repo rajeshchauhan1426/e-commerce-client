@@ -18,7 +18,7 @@ const Billboard: React.FC<BillboardProps> = ({ data }) => {
                         bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 
                         bg-clip-text text-transparent animate-text-gradient"
                     >
-                        {data?.label || "Default Label"}
+                        {data?.label  || "Default Label"}
                     </h1>
                 </div>  
             </div>
