@@ -11,3 +11,11 @@ export interface Category{
     billboard: Billboard;
     label: string
 }
+
+export interface Product{
+    id: string;
+    category: Category;
+    name: string;
+    price: string;
+    
+}
