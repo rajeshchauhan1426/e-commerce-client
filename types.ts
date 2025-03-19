@@ -13,6 +13,7 @@ export interface Category{
 }
 
 export interface Product{
+    imageUrl: any;
     id: string;
     category: Category;
     name: string;
