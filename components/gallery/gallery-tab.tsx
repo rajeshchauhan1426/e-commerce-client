@@ -1,9 +1,10 @@
+import { Tab } from "@headlessui/react"
 
 
 
 const GalleryTab=() => {
   return (
-    <div>GalleryTab</div>
+    <Tab>Gallery</Tab>
   )
 }
 
