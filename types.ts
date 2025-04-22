@@ -1,3 +1,5 @@
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+
 export interface Billboard{
     id: string;
     name: string;
@@ -21,9 +23,11 @@ export interface Product{
     isFeatured: boolean;
     size: Size;
     color: Color;
-    image: Image[];
+    images: Image[];
 }
 export interface Image{
+    alt: string;
+    src: string | StaticImport;
     id: string;
     url:string;
 }
