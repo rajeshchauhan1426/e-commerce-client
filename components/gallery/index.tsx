@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Tab, TabGroup, TabList } from "@headlessui/react";
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { Image as ImageType } from "@/types";
 import GalleryTab from "./gallery-tab";
 
@@ -20,9 +20,9 @@ const Gallery: React.FC<GalleryProps> = ({ images = [] }) => {
           ))}
         </TabList>
       </div>
-      <Tab.Panels className="aspect-square w-full">  
+      <TabPanels className="aspect-square w-full">  
         {images.map((image) => (  
-          <Tab.Panel key={image.id}>  
+          <TabPanel key={image.id}>  
             <div className="aspect-square relative h-full w-full sm:rounded-lg overflow-hidden">  
               <Image  
                 fill  
@@ -31,9 +31,9 @@ const Gallery: React.FC<GalleryProps> = ({ images = [] }) => {
                 className="object-cover object-center"  
               />  
             </div>  
-          </Tab.Panel>  
+          </TabPanel>  
         ))}  
-      </Tab.Panels> 
+      </TabPanels> 
     </TabGroup>
   );
 };
