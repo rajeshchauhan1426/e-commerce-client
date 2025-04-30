@@ -17,7 +17,7 @@ const Gallery: React.FC<GalleryProps> = ({ images = [] }) => {
         <TabList className="grid grid-cols-4 gap-6">
           {images && images.length > 0 && images.map((image) => (
             <GalleryTab key={image.id} image={image} />
-          ))}
+          ))} 
         </TabList>
       </div>
       <TabPanels className="aspect-square w-full">  
