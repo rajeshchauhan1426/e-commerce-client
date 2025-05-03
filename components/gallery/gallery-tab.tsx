@@ -1,6 +1,7 @@
 import Image from "next/image";  
 import { Tab } from "@headlessui/react";  
 import { Image as ImageType } from "@/types";  
+import { cn } from "@/libs/libs";
 
 interface GalleryTabProps {  
   image: ImageType; // Ensure ImageType has the necessary properties  
@@ -19,6 +20,10 @@ const GalleryTab: React.FC<GalleryTabProps> = ({ image }) => {
              className="object-cover object-center"
             />  
           </span>  
+          <span className={cn(
+            " absolute inset-0 rounded-md ring-2 ring-offset-2 ",
+            selected ? "ring-black" : "ring-transparent"
+      )}/>
         </div>  
       )}  
     </Tab>  
