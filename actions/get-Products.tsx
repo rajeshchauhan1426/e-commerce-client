@@ -22,16 +22,23 @@ const getProducts = async (query: Query): Promise<Product[]> => {
     },
   });
 
-  const res = await fetch(url);
-  const data = await res.json();
-
-  // Map each product to include an imageUrl extracted from product.images
-  const formattedData = data.map((product: any) => ({
-    ...product,
-    imageUrl: product.images?.[0]?.url || "/placeholder.png",
-  }));
-
-  return formattedData;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      console.error(`Failed to fetch products: ${res.status} ${res.statusText}`);
+      return [];
+    }
+    const data = await res.json();
+    // Map each product to include an imageUrl extracted from product.images
+    const formattedData = data.map((product: any) => ({
+      ...product,
+      imageUrl: product.images?.[0]?.url || "/placeholder.png",
+    }));
+    return formattedData;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
 };
 
 export default getProducts;

@@ -1,43 +1,76 @@
 import getProducts from '@/actions/get-Products';
 import getCategory from '@/actions/get-category';
 import getColors from '@/actions/get-color';
-import getProduct from '@/actions/get-product';
 import getSizes from '@/actions/get-sizes';
 import Billboard from '@/components/billboard';
 import Container from '@/components/ui/container';
-import React from 'react'
- export const revalidate= 0;
+import React from 'react';
+import Filter from './components/filter';
+import NoResults from '@/components/ui/no-result';
+import ProductCard from '@/components/ui/product-card';
+import MobileFilters from './components/mobilefilter';
 
-interface CategoryPageProps{
-    params:{
-        categoryId: string;
-    },
-    searchParams:{
-        colorId : string;
-        sizeId: string;
-    }
+export const revalidate = 0;
+
+interface CategoryPageProps {
+  params: {
+    categoryId: string;
+  };
+  searchParams: {
+    colorId: string;
+    sizeId: string;
+  };
 }
 
-const CategoryPage  :React.FC<CategoryPageProps> = async({
-    params,
-    searchParams
+const CategoryPage: React.FC<CategoryPageProps> = async ({
+  params,
+  searchParams,
 }) => {
+  console.log('CategoryPage params:', params);
+
+  if (!params.categoryId) {
+    console.error('No categoryId provided in params:', params);
+    return <div>Invalid category page: No categoryId provided.</div>;
+  }
+
   const products = await getProducts({
     categoryId: params.categoryId,
     colorId: searchParams.colorId,
-    sizeId: searchParams.sizeId
-  })
+    sizeId: searchParams.sizeId,
+  });
+
   const sizes = await getSizes();
-  const colors= await getColors();
-  const category = await getCategory(params.categoryId)
+  const colors = await getColors();
+  const category = await getCategory(params.categoryId);
 
-  return(
-    <div className='bg-white'> 
-        <Container>
-            <Billboard data={category.billboard}/>
-        </Container>
+  return (
+    <div className="bg-white">
+      <Container>
+        <Billboard data={category.billboard} />
+        <div className="px-4 sm:px-6 lg:px-8 pb-24">
+          <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
+            <MobileFilters sizes={sizes} colors={colors}/>
+            <div className="hidden lg:block">
+              <Filter valueKey="sizeId" name="Sizes" data={sizes} />
+              <Filter valueKey="colorId" name="Colors" data={colors} />
+            </div>
+            <div className='mt-6 lg:col-span-4 lg:mt-0'>
+              {products.length== 0 && <NoResults/>}
+              <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+                {products.map((item) => (
+                  <ProductCard
+                  key={item.id}
+                  data={item}
+                  />
+                ))}
+              </div>
+            </div>
+            {/* You can add more filters or product grid here */}
+          </div>
+        </div>
+      </Container>
     </div>
-  )
-}
+  );
+};
 
-export default CategoryPage
+export default CategoryPage;
